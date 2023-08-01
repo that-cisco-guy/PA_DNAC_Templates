@@ -9,7 +9,27 @@
 </head>
 
 <body>
-This is the view template page
+    <h1 class="page_title">DNAC Template</h1>
+
+    <h2 class="page_title">Welcome {{session.first_name}}</h2>
+
+    <a href="/dashboard"><button>Dashboard</button></a>
+
+    <div class="view">
+        <h1 class="page_title">View Template</h1>
+        <h2>{{dnac_template.template_name}}</h2>
+        <p>Created by: {{dnac_template.creator.first_name}}</p>
+        <p>Template Body:</p>
+        <p>{{dnac_template.template_body}}</p>
+    </div>
+
+    <!-- Conditional button -->
+    {% if session['user_id'] == dnac_template.creator.id %}
+        <a href="/dnac_template/edit/{{dnac_template.id}}"><button>Edit</button></a>
+        <a href="/dnac_template/destroy/{{dnac_template.id}}"><button>Delete</button></a>
+    {% endif %}
+
+    <a href="/user/logout"><button>Logout</button></a>
 </body>
 
 </html>
