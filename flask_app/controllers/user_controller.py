@@ -33,6 +33,17 @@ def register_success():
     session['user_id'] = user_id
     return redirect('/dashboard')
 
+@app.route('/user/<int:id>')
+def show_user(id):
+    data = {
+        "id": id
+    }
+    user = User.get_all_trees(data)
+    if user is None:
+        flash("User not found")
+        return redirect('/')
+    return render_template('user.html', user=user)
+
 @app.route('/user/logout')
 def logout():
     if 'user_id' in session:
