@@ -95,11 +95,11 @@ class DNAC_Template:
     def validate_dnac_template(form_data):
         is_valid = True
 
-        if len(form_data['template_name']) < 5:
-            flash("Template Name must be at least 5 characters long.")
+        if form_data['template_name'] == '':
+            flash("Please input Template Name.")
             is_valid = False
-        if len(form_data['template_body']) < 2:
-            flash("Template Body must be at least 5 characters long.")
+        if form_data['template_body'] == '':
+            flash("Please input Template Body.")
             is_valid = False
 
         return is_valid
