@@ -10,7 +10,34 @@
 </head>
 
 <body>
-
+    <div class="dashboard">
+        <h1 class="page_title">DNAC Templates</h1>
+        <h2 class="page_title">Welcome {{user.first_name}}</h2>
+        <a href="/user/{{user.id}}"><button>My Templates</button></a>
+        <a href="/dnac_template/new"><button>Create Template</button></a>
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Template Name</th>
+                        <th>Template Body</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dnac_template in dnac_templates %}
+                        <tr>
+                            <td>{{ dnac_template.template_name }}</td>
+                            <td>{{ dnac_template.creator.first_name }}</td>
+                            <td>
+                                <a href="/dnac_template/{{ dnac_template.id }}"><button>Details</button></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="/user/logout"><button>Logout</button></a>
+    </div>
 </body>
-This is the dashboard page
+
 </html>
