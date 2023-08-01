@@ -9,7 +9,26 @@
 </head>
 
 <body>
-This is the edit template page
+    <h1 class="page_title">DNAC Templates</h1>
+    <h2 class="page_title">Welcome {{session.first_name}}</h2>
+    <a href="/dashboard"><button>Dashboard</button></a>
+    <div class="view">
+        <h1 class="page_title">Edit {{dnac_template.template_name}}</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="/dnac_template/edit/process/{{dnac_template.id}}" method="post">
+            <input type="hidden" name="dnac_template_id" id="dnac_template_id" value="{{dnac_template.id}}">
+            <input type="text" name="template_name" id="template_name" value="{{dnac_template.template_name}}">
+            <input type="text" name="template_body" id="template_body" value="{{dnac_template.template_body}}">
+            <button type="submit">Update</button>
+        </form>
+    </div>
+    <a href="/user/logout"><button>Logout</button></a>
 </body>
 
 </html>
