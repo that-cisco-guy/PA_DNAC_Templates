@@ -12,3 +12,94 @@ class DNAC_Template:
         self.updated_at = db_data['updated_at']
         self.user_id = db_data['user_id']
         self.creator = None
+
+    @classmethod
+    def get_all(cls):
+        query = """
+                SELECT d.id, d.template_name, d.template_body, d.created_at, d.updated_at, d.user_id,
+                    u.id as creator_id, u.first_name as creator_first_name,
+                    u.last_name as creator_last_name,
+                FROM dnac_templates d
+                JOIN users u ON d.user_id = u.id
+                GROUP BY d.id, u.id;
+                """
+        results = connectToMySQL(db).query_db(query)
+        dnac_templates = []
+        for row in results:
+            this_dnac_template = cls(row)
+            user_data = {
+                "id": row['creator_id'],
+                "first_name": row['creator_first_name'],
+                "last_name": row['creator_last_name'],
+                "email": "",
+                "password": "",
+                "created_at": "",
+                "updated_at": ""
+            }
+            this_dnac_template.creator = user.User(user_data)
+            dnac_templates.append(this_dnac_template)
+        return dnac_templates
+    
+    @classmethod
+    def get_by_id(cls,data):
+        query = """
+                SELECT * FROM dnac_templates
+                JOIN users on dnac_templates.user_id = users.id
+                WHERE dnac_templates.id = %(id)s;
+                """
+        result = connectToMySQL(db).query_db(query,data)
+        if not result:
+            return False
+
+        result = result[0]
+        this_dnac_template = cls(result)
+        user_data = {
+                "id": result['users.id'],
+                "first_name": result['first_name'],
+                "last_name": result['last_name'],
+                "email": result['email'],
+                "password": "",
+                "created_at": result['users.created_at'],
+                "updated_at": result['users.updated_at']
+        }
+        this_dnac_template.creator = user.User(user_data)
+        return this_dnac_template
+
+    @classmethod
+    def save(cls, form_data):
+        query = """
+                INSERT INTO dnac_templates (template_name,template_body,user_id)
+                VALUES (%(template_name)s,%(template_body)s,%(user_id)s);
+                """
+        return connectToMySQL(db).query_db(query,form_data)
+
+    @classmethod
+    def update(cls,form_data):
+        query = """
+                UPDATE dnac_templates
+                SET template_name = %(template_name)s,
+                template_body = %(template_body)s,
+                WHERE id = %(id)s;
+                """
+        return connectToMySQL(db).query_db(query,form_data)
+    
+    @classmethod
+    def destroy(cls,data):
+        query = """
+                DELETE FROM dnac_templates
+                WHERE id = %(id)s;
+                """
+        return connectToMySQL(db).query_db(query,data)
+    
+    @staticmethod
+    def validate_dnac_template(form_data):
+        is_valid = True
+
+        if len(form_data['template_name']) < 5:
+            flash("Template Name must be at least 5 characters long.")
+            is_valid = False
+        if len(form_data['template_body']) < 2:
+            flash("Template Body must be at least 5 characters long.")
+            is_valid = False
+
+        return is_valid

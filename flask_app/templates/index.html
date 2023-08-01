@@ -10,7 +10,43 @@
 </head>
 
 <body>
-
+    <h1 class="page_title">DNAC Template Repository</h1>
+    <div class="main">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages if category == "register" %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+		<input type="checkbox" id="chk" aria-hidden="true">
+            <div class="register">
+                <form action="/user/register/process" method="post">
+                    <label for="chk" aria-hidden="true">Register</label>
+                    <input type="text" name="first_name" id="first_name" placeholder="First Name">
+                    <input type="text" name="last_name" id="last_name" placeholder="Last Name">
+                    <input type="text" name="email" id="email" placeholder="Email">
+                    <input type="password" name="password" id="password" placeholder="Password">
+                    <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password">
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+        <div class="login">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages if category == "login" %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action="/user/login/process" method="post">
+                <label for="chk" aria-hidden="true">Login</label>
+                <input type="email" name="email" id="email" placeholder="Email">
+                <input type="password" name="password" id="password" placeholder="Password">
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
 </body>
-This is the index page
+
 </html>
