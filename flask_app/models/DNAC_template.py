@@ -18,7 +18,7 @@ class DNAC_Template:
         query = """
                 SELECT d.id, d.template_name, d.template_body, d.created_at, d.updated_at, d.user_id,
                     u.id as creator_id, u.first_name as creator_first_name,
-                    u.last_name as creator_last_name,
+                    u.last_name as creator_last_name
                 FROM dnac_templates d
                 JOIN users u ON d.user_id = u.id
                 GROUP BY d.id, u.id;

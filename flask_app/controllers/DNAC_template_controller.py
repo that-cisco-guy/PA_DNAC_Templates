@@ -8,7 +8,7 @@ def dashboard():
     if 'user_id' not in session:
         return redirect('/user/login')
     user = User.get_by_id({"id":session['user_id']})
-    dnac_templates = DNAC_Tempaltes.get_all()
+    dnac_templates = DNAC_Template.get_all()
     if not user:
         return redirect('/user/logout')
         
