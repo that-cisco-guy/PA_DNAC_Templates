@@ -38,7 +38,7 @@ def show_user(id):
     data = {
         "id": id
     }
-    user = User.get_all_trees(data)
+    user = User.get_all_dnac_templates(data)
     if user is None:
         flash("User not found")
         return redirect('/')
