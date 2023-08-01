@@ -54,6 +54,30 @@ class User:
 
         return cls(result[0])
 
+    @classmethod
+    def get_all_dnac_templates(cls, data):
+        query = '''SELECT users.*, dnac_templates.*
+            FROM users
+            LEFT JOIN dnac_templates ON users.id = dnac_templates.user_id
+            WHERE users.id = %(id)s'''
+        results = connectToMySQL(db).query_db(query, data)
+        if results is None:
+            return None
+        user = cls(results[0])
+        user.dnac_template = []
+        from flask_app.models.dnac_template import DNAC_Template
+        for dnac_template in results:
+            dnac_template_data = {
+                'id': dnac_template['id'],
+                'template_name': dnac_template['template_name'],
+                'template_body': dnac_template['template_body'],
+                'created_at': dnac_template['created_at'],
+                'updated_at': dnac_template['updated_at'],
+                'user_id': dnac_template['user_id'],
+            }
+            user.dnac_template.append(DNAC_Template(dnac_template_data))
+            return user
+
     @staticmethod
     def validate_reg(form_data):
         is_valid = True
