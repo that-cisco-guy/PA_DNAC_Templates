@@ -9,7 +9,32 @@
 </head>
 
 <body>
-This is the new template page
+
+    <h1 class="page_title">DNAC Templates</h1>
+
+    <h2 class="page_title">Welcome {{session.first_name}}</h2>
+
+    <a href="/dashboard"><button>Dashboard</button></a>
+
+    <div class="view">
+        <h1 class="page_title">Create New Template</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <input type="checkbox" id="chk" aria-hidden="true">
+            <div class="register">
+                <form action="/dnac_template/new/process" method="post">
+                    <input type="text" name="tamplate_name" id="template_name" placeholder="Template Name">
+                    <input type="text" name="template_body" id="template_body" placeholder="Template Body">
+                    <button type="submit">Create Template</button>
+                </form>
+            </div>
+    </div>
+    <a href="/user/logout"><button>Logout</button></a>
 </body>
 
 </html>
