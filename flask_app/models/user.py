@@ -76,7 +76,7 @@ class User:
                 'user_id': dnac_template['user_id'],
             }
             user.dnac_template.append(DNAC_Template(dnac_template_data))
-            return user
+        return user
 
     @staticmethod
     def validate_reg(form_data):
