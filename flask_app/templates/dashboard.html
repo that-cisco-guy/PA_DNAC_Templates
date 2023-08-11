@@ -11,16 +11,29 @@
 </head>
 
 <body>
-
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">DNAC Templates</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/user/{{user.id}}">My Templates</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/dnac_template/new">Create Template</a>
+                </li>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-info" type="submit">Search</button>
+            </form>
+            </div>
+        </div>
+    </nav>
     <div>
-        <h1>DNAC Templates</h1>
-
-        <h2>Welcome {{user.first_name}}</h2>
-
-        <a href="/user/{{user.id}}"><button type="button" class="btn btn-outline-info">My Templates</button></a>
-
-        <a href="/dnac_template/new"><button type="button" class="btn btn-outline-info">Create Template</button></a>
-
+        <h1>Welcome {{user.first_name}}</h1>
         <div class="container">
             <table class="table">
                 <thead>
