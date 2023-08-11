@@ -78,7 +78,7 @@ class DNAC_Template:
         query = """
                 UPDATE dnac_templates
                 SET template_name = %(template_name)s,
-                template_body = %(template_body)s,
+                template_body = %(template_body)s
                 WHERE id = %(id)s;
                 """
         return connectToMySQL(db).query_db(query,form_data)
