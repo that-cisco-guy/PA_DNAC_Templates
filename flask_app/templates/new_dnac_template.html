@@ -26,10 +26,16 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-            <div class="register">
+            <div>
                 <form action="/dnac_template/new/process" method="post">
-                    <input type="text" name="template_name" id="template_name" placeholder="Template Name">
-                    <input type="text" name="template_body" id="template_body" placeholder="Template Body">
+                    <div class="mb-3">
+                        <label for="template_name" class="form-label">Template Name</label>
+                        <input type="text" class="form-control" name="template_name" id="template_name" placeholder="Template Name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="template_body" class="form-label">Template Body</label>
+                        <textarea class="form-control" name="template_body" id="template_body" rows="3" placeholder="Template Body"></textarea>
+                    </div>
                     <button type="submit">Create Template</button>
                 </form>
             </div>

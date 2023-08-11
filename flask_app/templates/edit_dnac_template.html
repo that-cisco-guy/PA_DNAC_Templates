@@ -24,8 +24,14 @@
         {% endwith %}
         <form action="/dnac_template/edit/process/{{dnac_template.id}}" method="post">
             <input type="hidden" name="dnac_template_id" id="dnac_template_id" value="{{dnac_template.id}}">
-            <input type="text" name="template_name" id="template_name" value="{{dnac_template.template_name}}">
-            <input type="text" name="template_body" id="template_body" value="{{dnac_template.template_body}}">
+            <div class="mb-3">
+                <label for="template_name" class="form-label">Template Name</label>
+                <input type="text" class="form-control" name="template_name" id="template_name" value="{{dnac_template.template_name}}">
+            </div>
+            <div class="mb-3">
+                <label for="template_body" class="form-label">Template Body</label>
+                <textarea class="form-control" name="template_body" id="template_body" value="{{dnac_template.template_body}}"></textarea>
+            </div>
             <button type="submit">Update</button>
         </form>
     </div>
