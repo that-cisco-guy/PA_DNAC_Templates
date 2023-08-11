@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,7 +15,7 @@
 
     <h2 class="page_title">Welcome {{session.first_name}}</h2>
 
-    <a href="/dashboard"><button>Dashboard</button></a>
+    <a href="/dashboard"><button type="button" class="btn btn-outline-info">Dashboard</button></a>
 
     <div class="view">
         <h1 class="page_title">Create New Template</h1>
@@ -36,11 +36,10 @@
                         <label for="template_body" class="form-label">Template Body</label>
                         <textarea class="form-control" name="template_body" id="template_body" rows="3" placeholder="Template Body"></textarea>
                     </div>
-                    <button type="submit">Create Template</button>
+                    <button type="submit" type="button" class="btn btn-outline-info">Create Template</button>
                 </form>
             </div>
     </div>
-    <a href="/user/logout"><button>Logout</button></a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 

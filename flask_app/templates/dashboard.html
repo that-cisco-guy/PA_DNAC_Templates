@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -12,17 +12,17 @@
 
 <body>
 
-    <div class="dashboard">
-        <h1 class="page_title">DNAC Templates</h1>
+    <div>
+        <h1>DNAC Templates</h1>
 
-        <h2 class="page_title">Welcome {{user.first_name}}</h2>
+        <h2>Welcome {{user.first_name}}</h2>
 
-        <a href="/user/{{user.id}}"><button>My Templates</button></a>
+        <a href="/user/{{user.id}}"><button type="button" class="btn btn-outline-info">My Templates</button></a>
 
-        <a href="/dnac_template/new"><button>Create Template</button></a>
+        <a href="/dnac_template/new"><button type="button" class="btn btn-outline-info">Create Template</button></a>
 
         <div class="container">
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Template Name</th>
@@ -36,7 +36,7 @@
                             <td>{{ dnac_template.template_name }}</td>
                             <td>{{ dnac_template.creator.first_name }}</td>
                             <td>
-                                <a href="/dnac_template/{{ dnac_template.id }}"><button>Details</button></a>
+                                <a href="/dnac_template/{{ dnac_template.id }}"><button type="button" class="btn btn-outline-info">Details</button></a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -45,7 +45,7 @@
             </table>
         </div>
 
-        <a href="/user/logout"><button>Logout</button></a>
+        <a href="/user/logout"><button type="button" class="btn btn-outline-info">Logout</button></a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 

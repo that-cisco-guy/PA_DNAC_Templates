@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,27 +10,19 @@
 </head>
 
 <body>
-    <h1 class="page_title">DNAC Template</h1>
-
-    <h2 class="page_title">Welcome {{session.first_name}}</h2>
-
-    <a href="/dashboard"><button>Dashboard</button></a>
-
-    <div class="view">
-        <h1 class="page_title">View Template</h1>
-        <h2>{{dnac_template.template_name}}</h2>
+    <h1 class="page_title">View Template {{dnac_template.template_name}}</h1>
+    <a href="/dashboard"><button type="button" class="btn btn-outline-info">Dashboard</button></a>
+    <div class="container">
         <p>Created by: {{dnac_template.creator.first_name}}</p>
         <p>Template Body:</p>
         <p>{{dnac_template.template_body}}</p>
     </div>
-
     <!-- Conditional button -->
     {% if session['user_id'] == dnac_template.creator.id %}
-        <a href="/dnac_template/edit/{{dnac_template.id}}"><button>Edit</button></a>
-        <a href="/dnac_template/destroy/{{dnac_template.id}}"><button>Delete</button></a>
+        <a href="/dnac_template/edit/{{dnac_template.id}}"><button type="button" class="btn btn-outline-info">Edit</button></a>
+        <a href="/dnac_template/destroy/{{dnac_template.id}}"><button type="button" class="btn btn-outline-info">Delete</button></a>
     {% endif %}
-
-    <a href="/user/logout"><button>Logout</button></a>
+    <a href="/user/logout"><button type="button" class="btn btn-outline-info">Logout</button></a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 
